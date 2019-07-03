@@ -1,24 +1,34 @@
-kind: pipeline
-name: default
+#kind: pipeline
+#name: default
+#
+#platform:
+#  os: linux
+#  arch: amd64
+#
+#steps:
+#  - name: build
+#    image: golang
+#    commands:
+#      - go build
+#      - go test
+#    when:
+#      branch:
+#        - master
+#      event:
+#        - push
+#trigger:
+#  branch:
+#    - master
+#  event:
+#    - push
 
-platform:
-  os: linux
-  arch: amd64
+workspace:
+  base: /go
+  path: src/github.com/zhanghudong/drone-test
 
-steps:
-  - name: build
-    image: golang
+pipeline:
+  build:
+    image: golang:1.10.2
     commands:
-      - go build
       - go test
-    when:
-      branch:
-        - master
-      event:
-        - push
-trigger:
-  branch:
-    - master
-  event:
-    - push
-
+      - go build
