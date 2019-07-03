@@ -1,11 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
-func main() {
-	fmt.Printf("Hello World! 哈哈哈")
+func index(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello golang http!")
 }
 
-func hello()string  {
+func main() {
+	http.HandleFunc("/", index)
+	http.ListenAndServe(":8080", nil)
+}
+
+func hello() string {
 	return "hello world"
 }
