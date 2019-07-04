@@ -53,8 +53,6 @@
 
 #官方
 pipeline:
-  
-
   backend:
     image: golang
     commands:
@@ -65,7 +63,7 @@ pipeline:
     image: plugins/docker
     repo: zhanghudong/drone-test
     tags: [ 1, 1.1, latest ]
-    registry: index.docker.io
+    registry: https://cloud.docker.com/u/zh1376639963/repository/docker/zh1376639963/nxns
 
 #  notify:
 #    image: plugins/slack
