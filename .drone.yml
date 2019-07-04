@@ -32,3 +32,15 @@ steps:
     commands:
       - go test
       - go build
+  - name: docker
+    image: docker:dind
+    volumes:
+      - name: dockersock
+        path: /var/run/docker.sock
+    commands:
+      - docker ps -a
+
+  volumes:
+    - name: dockersock
+      host:
+        path: /var/run/docker.sock
