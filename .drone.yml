@@ -53,9 +53,7 @@
 
 #官方
 pipeline:
-  workspace:
-    base: /go
-    path: src/github.com/zhanghudong/drone-test
+  
 
   backend:
     image: golang
