@@ -46,12 +46,13 @@ steps:
     commands:
       - go build
 
-  - name: dockerr
+  publish:
     image: plugins/docker
     repo: zhanghudong/drone-test
-    dockerfile: Dockerfile
+    tags: [ 1, 1.1, latest ]
+    registry: index.docker.io
 
-
+#官方
 #pipeline:
 #  backend:
 #    image: golang
@@ -60,11 +61,7 @@ steps:
 #      - go build
 #      - go test
 #
-#  publish:
-#    image: plugins/docker
-#    repo: zhanghudong/drone-test
-#    tags: [ 1, 1.1, latest ]
-#    registry: index.docker.io
+
 #
 #  notify:
 #    image: plugins/slack
