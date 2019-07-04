@@ -43,7 +43,7 @@ steps:
       - go build
 
   - name: docker
-    image: plugins/docker
+    image: drone-test
     repo: zhanghudong/drone-test
     dockerfile: Dockerfile
     tags: latest

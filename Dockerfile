@@ -8,7 +8,7 @@ FROM golang:latest
 RUN go install github.com/zhanghudong/drone-test
 
 # 容器启动时，默认运行 first 应用
-ENTRYPOINT /go/bin/drone-test
+#ENTRYPOINT /go/bin/drone-test
 
 # 监听 8080 端口
 EXPOSE 8080
