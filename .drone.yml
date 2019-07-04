@@ -26,6 +26,10 @@
 kind: pipeline
 name: default
 
+workspace:
+  base: /go
+  path: src/github.com/zhanghudong/drone-test
+
 steps:
   - name: test
     image: golang
