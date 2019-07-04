@@ -23,48 +23,48 @@
 #      local: false
 
 
-#kind: pipeline
-#name: default
-#
-#steps:
-#  - name: test
-#    image: golang
-#    volumes:
-#      - name: deps
-#        path: /go
-#    commands:
-#      - go test
-#  - name: build
-#    image: golang
-#    volumes:
-#      - name: deps
-#        path: /go
-#    commands:
-#      - go build
-#
-#  - name: docker
-#    image: plugins/docker
-#    repo: zhanghudong/drone-test
-#    dockerfile: Dockerfile
-#    tags: latest
-#    pull: true
+kind: pipeline
+name: default
 
-
-pipeline:
-  backend:
+steps:
+  - name: test
     image: golang
+    volumes:
+      - name: deps
+        path: /go
     commands:
-      - go get
-      - go build
       - go test
+  - name: build
+    image: golang
+    volumes:
+      - name: deps
+        path: /go
+    commands:
+      - go build
 
-  publish:
+  - name: docker
     image: plugins/docker
     repo: zhanghudong/drone-test
-    tags: [ 1, 1.1, latest ]
-    registry: index.docker.io
+    dockerfile: Dockerfile
+    tags: latest
+    pull: true
 
-  notify:
-    image: plugins/slack
-    channel: developers
-    username: drone
+
+#pipeline:
+#  backend:
+#    image: golang
+#    commands:
+#      - go get
+#      - go build
+#      - go test
+#
+#  publish:
+#    image: plugins/docker
+#    repo: zhanghudong/drone-test
+#    tags: [ 1, 1.1, latest ]
+#    registry: index.docker.io
+#
+#  notify:
+#    image: plugins/slack
+#    channel: developers
+#    username: drone
