@@ -46,7 +46,7 @@ steps:
     commands:
       - go build
 
-  - name: docker
+  - name: dockerr
     image: plugins/docker
     repo: zhanghudong/drone-test
     dockerfile: Dockerfile
