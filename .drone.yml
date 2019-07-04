@@ -5,26 +5,47 @@ workspace:
   base: /go
   path: src/github.com/zhanghudong/drone-test
 
-platform:
-  os: linux
-  arch: amd64
+clone:
+  git:
+    image: plugins/git
+    depth: 50
+    tags: true
 
-steps:
-  - name: build
-    image: golang
+pipeline:
+  testing:
+    image: golang:1.10.0
     commands:
-      - go build
-      - go test
+      - go test -v .
+      - go vet
+
+  build_linux_amd64:
+    image: golang:1.10.0
+    group: build
+    commands:
+      - make build_linux_amd64
+
+  publish_linux_amd64:
+    image: plugins/docker:17.05
+    pull: true
+    secrets: [ zh1376639963, zhanghudong001 ]
+    group: release
+    repo: appleboy/test
+    auto_tag: true
+    dockerfile: Dockerfile
     when:
-      branch:
-        - master
-      event:
-        - push
-trigger:
-  branch:
-    - master
-  event:
-    - push
+      event: [ push, tag ]
+      local: false
 
-
+  publish_alpine:
+    image: plugins/docker
+    group: release
+    pull: true
+    dockerfile: Dockerfile.alpine
+    secrets: [ zh1376639963, zhanghudong001 ]
+    default_tags: true
+    default_suffix: alpine
+    repo: appleboy/test
+    when:
+      event: [ push, tag ]
+      local: false
 
