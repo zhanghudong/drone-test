@@ -50,8 +50,6 @@ steps:
     image: plugins/docker
     repo: zhanghudong/drone-test
     dockerfile: Dockerfile
-    tags: latest
-    pull: true
 
 
 #pipeline:
@@ -72,3 +70,6 @@ steps:
 #    image: plugins/slack
 #    channel: developers
 #    username: drone
+
+
+
