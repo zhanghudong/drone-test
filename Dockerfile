@@ -1,8 +1,8 @@
 # 官方的 Golang 镜像基于 Debian，且 workspace（GOPATH）配置为 /go
-FROM golang:1.10.2
+FROM golang:latest
 
 # 将本地的 Go 文件复制到容器中的 workspace
-ADD . /go/src/github.com/zhanghudong/drone-test
+#ADD . /go/src/github.com/zhanghudong/drone-test
 
 # 在容器内编译构建应用。可以在这里获取或管理依赖关系，可以手动或使用诸如“godep”之类的工具
 RUN go install github.com/zhanghudong/drone-test
