@@ -43,9 +43,8 @@ steps:
       - go build
 
   - name: docker
-    image: docker:dind
-    volumes:
-      - name: dockersock
-#        path: /var/run/docker.sock
-    commands:
-      - docker ps -a
+    image: plugins/docker
+    repo: zhanghudong/drone-test
+    dockerfile: Dockerfile
+    tags: latest
+    pull: true
