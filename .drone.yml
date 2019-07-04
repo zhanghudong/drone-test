@@ -14,28 +14,17 @@ pipeline:
     commands:
       - go test -v .
       - go vet
-  publish_linux_amd64:
-    image: plugins/docker:17.05
-    pull: true
-    secrets: [ zh1376639963, zhanghudong001 ]
-    group: release
-    repo: appleboy/test
-    auto_tag: true
+  publish:
+    image: plugins/docker
+    repo: zhanghudong/drone-test
     dockerfile: Dockerfile
+    tags: latest
+    pull: true
+    registry: https://cloud.docker.com
+    group: release
+    auto_tag: true
     when:
       event: [ push, tag ]
       local: false
 
-  publish_alpine:
-    image: plugins/docker
-    group: release
-    pull: true
-    dockerfile: Dockerfile.alpine
-    secrets: [ zh1376639963, zhanghudong001 ]
-    default_tags: true
-    default_suffix: alpine
-    repo: appleboy/test
-    when:
-      event: [ push, tag ]
-      local: false
 
