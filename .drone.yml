@@ -1,4 +1,3 @@
-
 workspace:
   base: /go
   path: src/github.com/zhanghudong/drone-test
@@ -15,13 +14,6 @@ pipeline:
     commands:
       - go test -v .
       - go vet
-
-  build_linux_amd64:
-    image: golang:1.10.0
-    group: build
-    commands:
-      - make build_linux_amd64
-
   publish_linux_amd64:
     image: plugins/docker:17.05
     pull: true
