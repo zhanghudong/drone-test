@@ -13,7 +13,10 @@ pipeline:
 #    registry: cloud.docker.com
 #    repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
     dockerfile: Dockerfile
-    tags: latest
+    tags:
+      - latest
+    secrets: [ docker_username, docker_password ]
+#    auto_tag: true
 #    when:
 #      event: deployment
 #      environment: staging
