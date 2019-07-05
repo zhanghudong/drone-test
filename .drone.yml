@@ -23,52 +23,49 @@
 #      local: false
 
 
-#kind: pipeline
-#name: default
-#
-#workspace:
-#  base: /go
-#  path: src/github.com/zhanghudong/drone-test
-#
-#steps:
-#  - name: test
-#    image: golang
-#    volumes:
-#      - name: deps
-#        path: /go
-#    commands:
-#      - go test
-#  - name: build
-#    image: golang
-#    volumes:
-#      - name: deps
-#        path: /go
-#    commands:
-#      - go build
-#
-#  - name: dockerr
-#    image: plugins/docker
-#    repo: zhanghudong/drone-test
-#    dockerfile: Dockerfile
+kind: pipeline
+name: default
 
-#官方
-pipeline:
-  backend:
+workspace:
+  base: /go
+  path: src/github.com/zhanghudong/drone-test
+
+steps:
+  - name: test
     image: golang
+    volumes:
+      - name: deps
+        path: /go
+    commands:
+      - go test
+  - name: build
+    image: golang
+    volumes:
+      - name: deps
+        path: /go
     commands:
       - go build
-      - go test
 
-  publish:
+  - name: dockerr
     image: plugins/docker
     repo: zhanghudong/drone-test
-    tags: [ 1, 1.1, latest ]
-    registry: https://cloud.docker.com/u/zh1376639963/repository/docker/zh1376639963/nxns
+    dockerfile: Dockerfile
+
+#官方
+#pipeline:
+#  backend:
+#    image: golang
+#    commands:
+#      - go build
+#      - go test
+#
+#  publish:
+#    image: plugins/docker
+#    repo: zhanghudong/drone-test
+#    tags: [ 1, 1.1, latest ]
+#    registry: https://cloud.docker.com/u/zh1376639963/repository/docker/zh1376639963/nxns
 
 #  notify:
 #    image: plugins/slack
 #    channel: developers
 #    username: drone
-
-
-
