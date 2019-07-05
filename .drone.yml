@@ -15,7 +15,7 @@ pipeline:
     dockerfile: Dockerfile
     tags: latest
     pull: true
-    registry: https://cloud.docker.com
+    registry: https://cloud.docker.com/repository/docker/zh1376639963/nxns/
     group: release
     auto_tag: true
     when:
