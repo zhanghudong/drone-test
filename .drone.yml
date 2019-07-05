@@ -3,19 +3,20 @@ workspace:
   path: src/github.com/zhanghudong/drone-test
 
 pipeline:
-  test:
+  build:
     image: golang:latest
     commands:
       - go build
       - go test
-  publish:
+  publish_latest:
     image: plugins/docker
-#    registry: cloud.docker.com
     repo: zhanghudong/drone-test
-    dockerfile: Dockerfile
-    tags:
-      - latest
     secrets: [ docker_username, docker_password ]
+    auto_tag: true
+    dockerfile: Dockerfile
+    when:
+      event: [push,tag]
+
 #    auto_tag: true
 #    when:
 #      event: deployment
