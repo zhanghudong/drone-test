@@ -1,55 +1,55 @@
-#workspace:
-#  base: /go
-#  path: src/github.com/zhanghudong/drone-test
-#
-#pipeline:
-#  testing:
-#    image: golang:latest
-#    commands:
-#      - go env
-#      - go version
-#      - go build
-#  publish:
-#    image: plugins/docker
-#    repo: zhanghudong/drone-test
-#    dockerfile: Dockerfile
-#    tags: latest
-#    pull: true
-#    registry: https://cloud.docker.com
-#    group: release
-#    auto_tag: true
-#    when:
-#      event: [ push, tag ]
-#      local: false
-
-
-kind: pipeline
-name: default
-
 workspace:
   base: /go
   path: src/github.com/zhanghudong/drone-test
 
-steps:
-  - name: test
-    image: golang
-    volumes:
-      - name: deps
-        path: /go
+pipeline:
+  testing:
+    image: golang:latest
     commands:
-      - go test
-  - name: build
-    image: golang
-    volumes:
-      - name: deps
-        path: /go
-    commands:
+      - go env
+      - go version
       - go build
-
-  - name: dockerr
+  publish:
     image: plugins/docker
     repo: zhanghudong/drone-test
     dockerfile: Dockerfile
+    tags: latest
+    pull: true
+    registry: https://cloud.docker.com
+    group: release
+    auto_tag: true
+    when:
+      event: [ push, tag ]
+      local: false
+
+
+#kind: pipeline
+#name: default
+#
+#workspace:
+#  base: /go
+#  path: src/github.com/zhanghudong/drone-test
+#
+#steps:
+#  - name: test
+#    image: golang
+#    volumes:
+#      - name: deps
+#        path: /go
+#    commands:
+#      - go test
+#  - name: build
+#    image: golang
+#    volumes:
+#      - name: deps
+#        path: /go
+#    commands:
+#      - go build
+#
+#  - name: dockerr
+#    image: plugins/docker
+#    repo: zhanghudong/drone-test
+#    dockerfile: Dockerfile
 
 #官方
 #pipeline:
