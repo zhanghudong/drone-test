@@ -11,9 +11,10 @@ pipeline:
       - go build
   publish:
     image: plugins/docker
-    repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
+    repo: https://cloud.docker.com/repository/docker/zhanghudong/drone-test
     dockerfile: Dockerfile
     tags: latest
+    secrets: [ zhanghudong, zhanghudong001 ]
     pull: true
     group: release
     auto_tag: true
