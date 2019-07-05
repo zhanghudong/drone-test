@@ -12,6 +12,7 @@ pipeline:
     image: plugins/docker
     registry: cloud.docker.com
     repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
+    dockerfile: Dockerfile
     tags: latest
     when:
       event: deployment
