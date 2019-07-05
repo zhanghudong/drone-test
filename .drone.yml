@@ -11,7 +11,7 @@ pipeline:
       - go build
   publish:
     image: plugins/docker
-    repo: zh1376639963/drone-nxns
+    repo: zh1376639963/nxns
     dockerfile: Dockerfile
     tags: latest
     pull: true
