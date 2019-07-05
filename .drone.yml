@@ -14,6 +14,7 @@ pipeline:
     repo: zhanghudong/drone-test
     dockerfile: Dockerfile
     tags: latest
+    secrets: [ zhanghudong, zhanghudong001 ]
     pull: true
     group: release
     auto_tag: true
