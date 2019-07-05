@@ -6,22 +6,24 @@ pipeline:
   testing:
     image: golang:latest
     commands:
-      - go env
-      - go version
       - go build
+      - go test
   publish:
     image: plugins/docker
+    registry: cloud.docker.com
     repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
-    dockerfile: Dockerfile
     tags: latest
-    secrets: [ zhanghudong, zhanghudong001 ]
-    pull: true
-    group: release
-    auto_tag: true
     when:
-      event: [ push, tag ]
-      local: false
+      event: deployment
+      environment: staging
 
+  publish_to_prod:
+    image: plugins/docker
+    registry: cloud.docker.com
+    repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
+    when:
+      event: deployment
+      environment: production
 
 #kind: pipeline
 #name: default
