@@ -3,7 +3,7 @@ workspace:
   path: src/github.com/zhanghudong/drone-test
 
 pipeline:
-  testing:
+  test:
     image: golang:latest
     commands:
       - go build
@@ -11,7 +11,7 @@ pipeline:
   publish:
     image: plugins/docker
 #    registry: cloud.docker.com
-#    repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
+    repo: zhanghudong/drone-test
     dockerfile: Dockerfile
     tags:
       - latest
@@ -21,8 +21,8 @@ pipeline:
 #      event: deployment
 #      environment: staging
 
-  publish_to_prod:
-    image: plugins/docker
+#  publish_to_prod:
+#    image: plugins/docker
 #    registry: cloud.docker.com
 #    repo: cloud.docker.com/repository/docker/zhanghudong/drone-test
 #    when:
