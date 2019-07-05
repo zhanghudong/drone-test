@@ -11,7 +11,7 @@ pipeline:
       - go build
   publish:
     image: plugins/docker
-    repo: zhanghudong/drone-test
+    repo: zh1376639963/drone-nxns
     dockerfile: Dockerfile
     tags: latest
     pull: true
