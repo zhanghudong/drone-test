@@ -20,7 +20,7 @@ pipeline:
 #    auto_tag: true
 #    when:
 #      event: deployment
-#      environment: staging
+#      environment: staging 啊大大好看的
 
 #  publish_to_prod:
 #    image: plugins/docker
