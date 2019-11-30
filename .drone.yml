@@ -8,14 +8,14 @@ pipeline:
     commands:
       - go build
       - go test
-  publish_latest:
-    image: plugins/docker
-    repo: zhanghudong/drone-test
-    secrets: [ docker_username, docker_password ]
-    auto_tag: true
-    dockerfile: Dockerfile
-    when:
-      event: [push,tag]
+#  publish_latest:
+#    image: plugins/docker
+#    repo: zhanghudong/drone-test
+#    secrets: [ docker_username, docker_password ]
+#    auto_tag: true
+#    dockerfile: Dockerfile
+#    when:
+#      event: [push,tag]
 
 #    auto_tag: true
 #    when:
