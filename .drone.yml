@@ -1,13 +1,33 @@
+workspace:
+  base: /app/drone-tedt
+  path: .
+
+pipeline:
+  build:
+    image: golang:alpine
+    # pull: true
+    environment:
+      - KEY=VALUE
+    secrets: [key1, key2]
+    commands:
+      - echo $$KEY
+      - pwd
+      - ls
+      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+      - ./app
+
+
+
 #workspace:
 #  base: /go
 #  path: src/github.com/zhanghudong/drone-test
 #
-pipeline:
-  build:
-    image: golang:latest
-    commands:
-      - go build
-      - go test
+#pipeline:
+#  build:
+#    image: golang:latest
+#    commands:
+#      - go build
+#      - go test
 #  publish_latest:
 #    image: plugins/docker
 #    repo: zhanghudong/drone-test
