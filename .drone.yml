@@ -12,7 +12,7 @@ pipeline:
 #    image: plugins/docker
 #    repo: zhanghudong/drone-test
 #    secrets: [ docker_username, docker_password ]
-#    auto_tag: true
+#    auto_tag: truels
 #    dockerfile: Dockerfile
 #    when:
 #      event: [push,tag]
